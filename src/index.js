@@ -1,5 +1,5 @@
 import {program} from "commander";
-import {addContact, getContactById, listContacts} from "./contacts.js";
+import {addContact, getContactById, listContacts, removeContact} from "./contacts.js";
 
 program
     .option("-a, --action <type>", "choose action")
@@ -32,7 +32,8 @@ async function invokeAction({action, id, ...data}) {
             break;
 
         case "remove":
-            // ... id
+            const removedContact = await removeContact(id);
+            console.log(removedContact);
             break;
 
         default:
@@ -40,10 +41,15 @@ async function invokeAction({action, id, ...data}) {
     }
 }
 
+// ПРИКЛАДИ ВИКОРИСТАННЯ
 // invokeAction({action: "list"});
+
 // invokeAction({action: "get", id: "e6ywwRe4jcqxXfCZOj_1e"});
-invokeAction({
-    action: "add",
-    name: "Pavlo Chubynskyi",
-    email: "pav.chub@gmail.com", phone: "(097) 840-6985"
-});
+
+// invokeAction({
+//     action: "addd",
+//     name: "Pavlo Chubynskyi",
+//     email: "pav.chub@gmail.com", phone: "(097) 840-6985"
+// });
+
+invokeAction({action: "remove", id: "90_Rs9XOJiTDjjLL_dfQR"});
