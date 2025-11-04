@@ -6,13 +6,17 @@ const contactsPath = path.resolve("src", "db", "contacts.json");
 
 // Повертає масив контактів.
 export async function listContacts() {
-    const data = await fs.readFile(contactsPath, "utf-8");
-    return JSON.parse(data);
+    const contacts = await fs.readFile(contactsPath, "utf-8");
+    return JSON.parse(contacts);
 }
 
-// async function getContactById(contactId) {
-//     // ...твій код. Повертає об'єкт контакту з таким id. Повертає null, якщо контакт з таким id не знайдений.
-// }
+// Повертає об'єкт контакту з таким id. Повертає null, якщо контакт з таким id не знайдений.
+export async function getContactById(id) {
+    const allContacts = await listContacts();
+    const oneContact = allContacts.find(item => item.id === id);
+    return oneContact || null;
+}
+
 //
 // async function removeContact(contactId) {
 //     // ...твій код. Повертає об'єкт видаленого контакту. Повертає null, якщо контакт з таким id не знайдений.

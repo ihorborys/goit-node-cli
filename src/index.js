@@ -1,5 +1,5 @@
 import {program} from "commander";
-import {listContacts} from "./contacts.js";
+import {getContactById, listContacts} from "./contacts.js";
 
 program
     .option("-a, --action <type>", "choose action")
@@ -21,8 +21,10 @@ async function invokeAction({action, id, name, email, phone}) {
             break;
 
         case "get":
-            // ... id
+            const getContact = await getContactById(id);
+            console.log(getContact);
             break;
+
 
         case "add":
             // ... name email phone
@@ -37,6 +39,5 @@ async function invokeAction({action, id, name, email, phone}) {
     }
 }
 
-invokeAction({action: "list"});
-
-// listContacts(--action)
+// invokeAction({action: "list"});
+invokeAction({action: "get", id: "e6ywwRe4jcqxXfCZOj_1e"});
