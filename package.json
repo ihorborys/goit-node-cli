@@ -4,7 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index",
+    "dev": "nodemon src/index",
+    "contacts": "node src/contacts"
   },
   "repository": {
     "type": "git",
@@ -13,11 +16,15 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/ihorborys/goit-node-cli/issues"
   },
   "homepage": "https://github.com/ihorborys/goit-node-cli#readme",
   "dependencies": {
     "commander": "^14.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
