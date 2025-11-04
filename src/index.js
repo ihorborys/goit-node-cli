@@ -1,5 +1,5 @@
 import {program} from "commander";
-import {getContactById, listContacts} from "./contacts.js";
+import {addContact, getContactById, listContacts} from "./contacts.js";
 
 program
     .option("-a, --action <type>", "choose action")
@@ -13,7 +13,7 @@ program.parse();
 const options = program.opts();
 
 // TODO: рефакторити
-async function invokeAction({action, id, name, email, phone}) {
+async function invokeAction({action, id, ...data}) {
     switch (action) {
         case "list":
             const allContacts = await listContacts();
@@ -27,7 +27,8 @@ async function invokeAction({action, id, name, email, phone}) {
 
 
         case "add":
-            // ... name email phone
+            const newContact = await addContact(data);
+            console.log(newContact);
             break;
 
         case "remove":
@@ -40,4 +41,9 @@ async function invokeAction({action, id, name, email, phone}) {
 }
 
 // invokeAction({action: "list"});
-invokeAction({action: "get", id: "e6ywwRe4jcqxXfCZOj_1e"});
+// invokeAction({action: "get", id: "e6ywwRe4jcqxXfCZOj_1e"});
+invokeAction({
+    action: "add",
+    name: "Pavlo Chubynskyi",
+    email: "pav.chub@gmail.com", phone: "(097) 840-6985"
+});

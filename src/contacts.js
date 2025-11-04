@@ -1,5 +1,6 @@
 import fs from "node:fs/promises";
 import path from 'node:path';
+import {nanoid} from "nanoid";
 
 const contactsPath = path.resolve("src", "db", "contacts.json");
 
@@ -17,14 +18,23 @@ export async function getContactById(id) {
     return oneContact || null;
 }
 
+// Повертає об'єкт доданого контакту (з id).
+export async function addContact(payload) {
+    const allContacts = await listContacts();
+    const newContact = {
+        id: nanoid(),
+        ...payload,
+    };
+    allContacts.push(newContact);
+    await fs.writeFile(contactsPath, JSON.stringify(allContacts, null, 4));
+    return newContact;
+}
+
 //
 // async function removeContact(contactId) {
 //     // ...твій код. Повертає об'єкт видаленого контакту. Повертає null, якщо контакт з таким id не знайдений.
 // }
 //
-// async function addContact(name, email, phone) {
-//     // ...твій код. Повертає об'єкт доданого контакту (з id).
-// }
 
 
 // import fs from "fs";

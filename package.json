@@ -22,7 +22,8 @@
   },
   "homepage": "https://github.com/ihorborys/goit-node-cli#readme",
   "dependencies": {
-    "commander": "^14.0.2"
+    "commander": "^14.0.2",
+    "nanoid": "^5.1.6"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
